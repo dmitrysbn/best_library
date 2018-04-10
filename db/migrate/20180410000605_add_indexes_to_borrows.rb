@@ -1,11 +1,6 @@
 class AddIndexesToBorrows < ActiveRecord::Migration[5.1]
-  def up
-    add_index :borrows, :user_id
-    add_index :borrows, :book_id
-  end
-  
-  def down
-    remove_index :borrows, :user_id
-    remove_index :borrows, :book_id
+  def change
+    add_reference :borrows, :book, foreign_key: true
+    add_reference :borrows, :user, foreign_key: true
   end
 end
